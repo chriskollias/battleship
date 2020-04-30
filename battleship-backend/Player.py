@@ -1,4 +1,5 @@
 from Ship import Ship
+from Board import Board
 
 class Player(object):
     def __init__(self, name:str) -> None:
@@ -12,7 +13,7 @@ class Player(object):
         self.list_of_ships.append(ship)
         self.ship_dict[ship.name[0]] = ship
         #self.placement_board.place_ship(ship)
-        self.placement_board.print_board(placement=True)
+        self.placement_board.print_board()
 
     def remove_ship(self, ship:Ship) -> None:
         self.list_of_ships.remove(ship)

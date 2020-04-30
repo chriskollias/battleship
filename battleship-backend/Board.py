@@ -1,13 +1,11 @@
 from Ship import Ship
 
-
+# used for both Placement Board and Scanning Board
 class Board(object):
-
-
     def __init__(self, x: int, y: int) -> None:
         self.x = x
         self.y = y
-       # self.orientations = {'h': 'horizontal', 'H': 'horizontal', 'v': 'vertical', 'V': 'vertical'}
+        #self.orientations = {'h': 'horizontal', 'H': 'horizontal', 'v': 'vertical', 'V': 'vertical'}
         self.board_array = []
         self.ship_owners = {}
         self.initialize_board()
@@ -25,6 +23,7 @@ class Board(object):
                 elif row != 0 and col != 0:
                     print(self.board_array[row - 1][col - 1], end=' ')
             print('')
+
 
     def shoot_cord(self, cord: list) -> bool:
         try:

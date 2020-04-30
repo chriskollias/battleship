@@ -1,23 +1,17 @@
 from Board import Board
-from PlacementBoard import PlacementBoard
-from ScanningBoard import ScanningBoard
 from Player import Player
-import sys
 from Ship import Ship
 
 
 class BattleShipGame(object):
-    current_turn = 0
-    game_over = False
-    boat_dict = {}
-    dimx = 0
-    dimy = 0
-
     def __init__(self) -> None:
-        self.board = None
+        self.current_turn = 0
+        self.game_over = False
+        self.boat_dict = {}
+        self.dimx = 0
+        self.dimy = 0
         self.players = []
         self.orientations = {'h': 'horizontally', 'H': 'horizontally', 'v': 'vertically', 'V': 'vertically'}
-        print('Object created@!')
 
     def play(self) -> None:
         while not self.game_over:
@@ -52,7 +46,7 @@ class BattleShipGame(object):
         while not cords_valid:
             if first_time_asking:
                 player.scanning_board.print_board()
-                player.placement_board.print_board(placement=False)
+                player.placement_board.print_board()
                 first_time_asking = False
             print('{}, enter the location you want to fire at in the form row, column:'.format(player.name))
             move_cords = self.get_cords_for_firing()
@@ -62,7 +56,7 @@ class BattleShipGame(object):
                 cords_valid = valid_input and valid_move
                 if cords_valid:
                     player.scanning_board.print_board()
-                    player.placement_board.print_board(placement=False)
+                    player.placement_board.print_board()
         self.check_victory()
         self.switch_player()
 
@@ -108,7 +102,7 @@ class BattleShipGame(object):
             print('{} is not a valid value for column.\nIt should be an integer between 0 and {}'.format(y,
                                                                                                           self.board.y - 1))
             return False
-        if x > (self.board.x - 1) or y > (self.board.y - 1):
+        if x > (self.dimx - 1) or y > (self.dimy - 1):
             print('Cannot place {} {} at {}, {} because it would be out of bounds.'.format(boat_name,
                                                                                            self.orientations[dir], x,
                                                                                            y))
@@ -146,11 +140,10 @@ class BattleShipGame(object):
             self.current_turn = 0
 
     def create_board(self, x: int, y: int, player: Player) -> None:
-        self.board = Board(x, y)
         print('{}\'s Placement Board'.format(player.name))
-        self.board.print_board()
-        player.placement_board = PlacementBoard(x, y, player)
-        player.scanning_board = ScanningBoard(x, y, player)
+        player.placement_board = Board(x, y)
+        player.placement_board.print_board()
+        player.scanning_board =  Board(x, y)
         self.place_ship(player)
 
     def create_player(self, player_id: str) -> Player:
@@ -212,7 +205,8 @@ class BattleShipGame(object):
             # hardcoding to 10 for now
             self.dimx = 10
             self.dimy = 10
-            inputs = ['Patrol 2', 'Submarine 3', 'Destroyer 4', 'Battleship 5']
+            #inputs = ['Patrol 2', 'Submarine 3', 'Destroyer 4', 'Battleship 5']
+            inputs = ['Patrol 2']
             for line in inputs:
                 boat_name = line.split(' ')[0]
                 boat_hp = line.split(' ')[1]
@@ -267,6 +261,7 @@ class BattleShipGame(object):
                         player.add_ship(new_ship)
                     boat_placed = placement_successful
                 except Exception as e:
+                    print('Error while placing boat', e)
                     pass
 
     def verify_orientation(self, dir: str) -> bool:
