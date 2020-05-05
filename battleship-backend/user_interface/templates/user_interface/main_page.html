@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battleship</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+</head>
+<body>
+    <table>
+    {% for row in rows %}
+        <tr>
+            <td><span>A</span></td>
+            {% for column in columns %}
+                {% if forloop.counter0 == columns|length|add:'-1'  %}
+                    <td class="board_square_newline"></td>
+                {% else %}
+                    <td class="board_square"></td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+
+    </table>
+    <table>
+    <tr>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+            <td class="bottom-numbers">{{ 5 }}</td>
+     </tr>
+    </table>
+
+</body>
+</html>
