@@ -6,7 +6,7 @@ def main_game_view(request):
     columnCount = 10
 
     rows = [x for x in range(0, rowCount)]
-    columns = [x for x in range(0, columnCount + 1)]
+    columns = [x for x in range(0, columnCount)]
 
 
 

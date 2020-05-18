@@ -8,36 +8,30 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
 </head>
 <body>
-    <table>
-    {% for row in rows %}
-        <tr>
-            <td><span>A</span></td>
-            {% for column in columns %}
-                {% if forloop.counter0 == columns|length|add:'-1'  %}
-                    <td class="board_square_newline"></td>
-                {% else %}
-                    <td class="board_square"></td>
-                {% endif %}
+    <div class="board-container">
+        <table>
+            {% for row in rows %}
+                <tr>
+                    <td><span>A</span></td>
+                    {% for column in columns %}
+                            <td class="board_square"></td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
-        </tr>
-    {% endfor %}
-
-    </table>
-    <table>
-    <tr>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-            <td class="bottom-numbers">{{ 5 }}</td>
-     </tr>
-    </table>
-
+            <tr class='bottom-numbers'>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

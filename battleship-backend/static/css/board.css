@@ -1,9 +1,15 @@
 
+.board_container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+
+}
+
 .board_square {
     width: 50px;
     height: 50px;
     border: 5px black solid;
-    float: left;
 }
 
 .board_square_newline {
@@ -29,7 +35,6 @@ table {
 .bottom-numbers {
     width: 50px;
     height: 50px;
-    text-align: right;
     font-size: 2.5em;
-    padding-left: 12px;
+    text-align: center;
 }
